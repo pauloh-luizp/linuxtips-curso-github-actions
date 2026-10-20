@@ -2,13 +2,13 @@ name: Worflow do desafio 1
 
 on:
   workflow_dispatch:
-    imputs:
+    inputs:
       nome_da_imagem:
         description: "Digite o nome da imagem docker"
         required: true
         default: 'nginx:latest'
         type: string
-        
+
 jobs:
   docker_pull:
     runs-on: ubuntu-latest
