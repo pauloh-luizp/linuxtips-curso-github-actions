@@ -9,12 +9,11 @@ on:
         default: 'nginx:latest'
         type: string
 jobs:
-  job_1:
-    docker_pull:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Docker Pull da imagem solicitada
-          run: docker pull ${{ github.event.inputs.nome_da_imagem}}
-      steps: 
-        - name: Listando a imagem na qual foi feita o pull
-          run: docker images
+  docker_pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Pull da imagem solicitada
+        run: docker pull ${{ github.event.inputs.nome_da_imagem}}
+    steps: 
+      - name: Listando a imagem na qual foi feita o pull
+        run: docker images
