@@ -9,7 +9,7 @@ on:
         default: 'nginx:latest'
         type: string
 jobs:
-  docker_pull: ---
+  docker_pull:
     runs-on: ubuntu-latest
     steps:
       - name: Docker Pull da imagem solicitada
