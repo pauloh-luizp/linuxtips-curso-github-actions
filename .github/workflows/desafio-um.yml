@@ -1,0 +1,20 @@
+name: Worflow do desafio 1
+
+on:
+  workflow_dispatch:
+    imputs:
+      nome_da_imagem:
+        description: "Digite o nome da imagem docker"
+        required: true
+        default: 'nginx:latest'
+        type: string
+
+jobs:
+  docker_pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Pull da imagem solicitada
+        run: docker pull ${{ github.event.inputs.nome_da_imagem}}
+    steps: 
+      - name: Listando a imagem na qual foi feita o pull
+        run: docker images
