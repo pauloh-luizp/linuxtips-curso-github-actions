@@ -8,6 +8,7 @@ on:
         required: true
         default: 'nginx:latest'
         type: string
+        
 jobs:
   docker_pull:
     runs-on: ubuntu-latest
