@@ -1,0 +1,16 @@
+name: Validação de Ambiente
+
+on:
+  workflow_dispatch:
+    inputs:
+      nome_da_imagem_enviada:
+        description: "Digite o nome da imagem docker"
+        required: true
+        default: 'nginx:latest'
+        type: string
+
+jobs:
+  chama-build_e_testes:
+    uses: .github/workflows/2-build-e-testes.yml
+    with:
+       nome_da_imagem_enviada: ${{ github.event.inputs.nome_da_imagem_enviada}} 
