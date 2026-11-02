@@ -13,4 +13,4 @@ jobs:
   chama-build_e_testes:
     uses: ./.github/workflows/2-build-e-testes.yml
     with:
-      nome_da_imagem_enviada: ${{ inputs.nome_da_imagem_enviada}}
+      nome_da_imagem_recebida: ${{ inputs.nome_da_imagem_enviada}}
