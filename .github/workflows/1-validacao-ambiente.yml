@@ -11,6 +11,6 @@ on:
 
 jobs:
   chama-build_e_testes:
-    uses: .github/workflows/2-build-e-testes.yml
+    uses: ./.github/workflows/2-build-e-testes.yml
     with:
        nome_da_imagem_enviada: ${{ github.event.inputs.nome_da_imagem_enviada}} 
