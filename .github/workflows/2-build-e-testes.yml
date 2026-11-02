@@ -6,10 +6,10 @@ on:
       nome_da_imagem_recebida:
         required: true
         type: string
-        
+
 jobs:
   faz_o_build_e_testa:
     runs-on: ubuntu-latest
     steps:
       - name: Docker Pull da imagem solicitada
-        run: docker pull ${{ github.event.inputs.nome_da_imagem_recebida}}
+        run: docker pull ${{ inputs.nome_da_imagem_recebida}}
