@@ -1,0 +1,25 @@
+name: publicacao
+
+on:
+  status
+jobs:
+  if_error_or_failure:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'error' ||
+      github.event.state == 'failure'
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo "T"he status is error or failed: $DESCRIPTION"
+
+  if_sucess:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.state == 'sucess' 
+    steps:
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo "The status is sucess: $DESCRIPTION"
