@@ -6,6 +6,7 @@ on:
       nome_da_imagem_recebida:
         required: true
         type: string
+        
 jobs:
   faz_o_build_e_testa:
     runs-on: ubuntu-latest
