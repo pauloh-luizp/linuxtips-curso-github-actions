@@ -1,0 +1,14 @@
+name: Build_e_testes
+
+on:
+  workflow_call:
+    inputs:
+      nome_da_imagem_recebida:
+        required: true
+        type: string
+jobs:
+  faz_o_build_e_testa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Pull da imagem solicitada
+        run: docker pull ${{ github.event.inputs.nome_da_imagem_recebida}}
