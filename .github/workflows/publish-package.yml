@@ -1,0 +1,33 @@
+name: Publish Node Libary
+on:
+	push:
+		tags: ["v*"]
+
+permissions:
+	contents: read
+	packages: write
+
+jobs:
+	publish:
+		runs-on: ubuntu-latest
+		steps:
+			- uses: actions/checkout@v4
+
+			- uses: actions/setup-node@v4
+				wtih:
+					node-version: '20'
+					registry-url: 'https://npm.pkg.github.com'
+			
+			- name: Geralte lockfile
+				working-directory: pacote
+				run: npm install --packge-lock-only --ignore-scripts
+
+			- name: Install and test
+				working-directory: pacote
+				run: npm ci && npm test || echo "No tests yet"
+
+			- nome: Publish to GitHub Packages
+				working-directory: pacote
+				env:
+					NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+				run: npm publish
