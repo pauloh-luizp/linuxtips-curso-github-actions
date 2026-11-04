@@ -1,0 +1,23 @@
+name: Worflow do desafio 1
+
+on:
+  workflow_dispatch:
+    inputs:
+      nome_da_imagem:
+        description: "Digite o nome da imagem docker"
+        required: true
+        default: 'nginx:latest'
+        type: string
+
+jobs:
+  docker_pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Pull da imagem solicitada
+        run: docker pull ghcr.io/OWNER/REPOSITORY/IMAGE_NAME:TAG_NAME
+
+      - name: Listando a imagem na qual foi feita o pull
+        run: docker images
+
+      - name: rodando a imagem
+        run: docker run -d -e NOME_ALUNO=${{ vars.NOME_ALUNO}} -p 3000:3000 <
