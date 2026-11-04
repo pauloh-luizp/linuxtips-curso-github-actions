@@ -33,5 +33,5 @@ jobs:
           docker build \
             --bild-arg GH_PACKAGES_TOKEN \
             -t "$IMAGE" \
-            aplicacao-de-vendas
+            aplicacao
           docker push "$IMAGE"
