@@ -27,7 +27,7 @@ jobs:
         env:
           REPO_ANTES: ${{ github.repository }}
         run: |
-          REPO_DEPOIS=$(echo "$REPO_ANTES" | tr '[:upper:][:lower:]')
+          REPO_DEPOIS=$(echo "$REPO_ANTES" | tr '[:upper:]' '[:lower:]')
           IMAGE=ghcr.io/${REPOS_DEPOIS}/aplicacao:{{ github.sha }}
           docker build \
             --bild-arg GH_PACKAGES_TOKEN \
