@@ -1,0 +1,13 @@
+name: Pipeline do Desafio 5
+
+on: workflow_dispatch
+
+jobs:
+  buld: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: validacao de lint
+        id: lint
+        run: npm run lint
+
+    
