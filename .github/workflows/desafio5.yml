@@ -3,11 +3,42 @@ name: Pipeline do Desafio 5
 on: workflow_dispatch
 
 jobs:
-  buld: 
+  build: 
     runs-on: ubuntu-latest
     steps: 
       - name: validacao de lint
         id: lint
         run: npm run lint
 
-    
+  quality-gate:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testes com Cobertura
+        run: |
+          npx jest --runInBand --coverage
+
+  docker:
+    runs-on: ubuntu-latest
+    env:
+      GH_PACKEGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      -name: checkout
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push image
+        env:
+          REPO_ANTES: ${{ github.repository }}
+        run: |
+          REPO_DEPOIS=$(echo "$REPO_ANTES" | tr '[:upper:]' '[:lower:]')
+          IMAGE=ghcr.io/${REPOS_DEPOIS}/desafio5:{{ github.sha }}
+          docker build \
+            --bild-arg GH_PACKAGES_TOKEN \
+            -t "$IMAGE" \
+            desafio5
+          docker push "$IMAGE"
